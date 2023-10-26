@@ -2,6 +2,7 @@ import React from 'react';
 import autoBind from 'react-auto-bind';
 import { getInitialData } from '../utils/index.js';
 import NoteList from './NoteList.jsx';
+import NoteInput from './NoteInput.jsx';
 
 class NoteAppBody extends React.Component {
   constructor(props) {
@@ -12,6 +13,21 @@ class NoteAppBody extends React.Component {
     };
 
     autoBind(this);
+  }
+
+  onAddNoteHandler({ judul, catatan }) {
+    this.setState((prevState) => ({
+      notes: [
+        ...prevState.notes,
+        {
+          id: +new Date(),
+          title: judul,
+          body: catatan,
+          createdAt: new Date().toISOString(),
+          archived: false,
+        },
+      ],
+    }));
   }
 
   onDeleteHandler(id) {
@@ -32,6 +48,8 @@ class NoteAppBody extends React.Component {
   render() {
     return (
       <div className="note-app__body">
+        <h2>Buat Catatan</h2>
+        <NoteInput addNote={this.onAddNoteHandler} />
         <h2>Catatan Aktif</h2>
         {this.state.notes.filter((note) => !note.archived).length > 0
           ? (
@@ -41,7 +59,7 @@ class NoteAppBody extends React.Component {
               onMove={this.onMoveHandler}
             />
           )
-          : <p>Tidak Ada Catatan!</p>}
+          : <p className="notes-list__empty-message">Tidak Ada Catatan!</p>}
         <h2>Arsip</h2>
         {this.state.notes.filter((note) => note.archived).length > 0
           ? (
@@ -51,7 +69,7 @@ class NoteAppBody extends React.Component {
               onMove={this.onMoveHandler}
             />
           )
-          : <p>Tidak Ada Catatan!</p>}
+          : <p className="notes-list__empty-message">Tidak Ada Catatan!</p>}
       </div>
     );
   }
