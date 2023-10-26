@@ -11,6 +11,9 @@
     "rules": {
         "import/extensions": "off",
         "react/prop-types": "off",
-        "react/jsx-props-no-spreading": "off"
+        "react/jsx-props-no-spreading": "off",
+        "react/destructuring-assignment": "off",
+        "react/no-access-state-in-setstate": "off",
+        "import/no-extraneous-dependencies": "off"
     }
 }

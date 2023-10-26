@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "react": "^18.0.0",
+    "react-auto-bind": "^0.4.2",
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
