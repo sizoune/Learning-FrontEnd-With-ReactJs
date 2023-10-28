@@ -61,6 +61,7 @@ class DetailPage extends React.Component {
 }
 
 DetailPage.propTypes = {
+  id: PropTypes.string.isRequired,
   backtoHome: PropTypes.func.isRequired,
 };
 

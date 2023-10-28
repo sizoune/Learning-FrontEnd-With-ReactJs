@@ -79,7 +79,6 @@ class HomePage extends React.Component {
 }
 
 HomePage.propTypes = {
-  defaultKeyword: PropTypes.string.isRequired,
   keywordChange: PropTypes.func.isRequired,
   navigateToAddPage: PropTypes.func.isRequired,
 };
