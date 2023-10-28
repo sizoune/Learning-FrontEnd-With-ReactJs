@@ -57,7 +57,6 @@ class ArchivePage extends React.Component {
 }
 
 ArchivePage.propTypes = {
-  defaultKeyword: PropTypes.string.isRequired,
   keywordChange: PropTypes.func.isRequired,
 };
 
