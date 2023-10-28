@@ -1,8 +1,8 @@
 import React from 'react';
-import parser from 'html-react-parser';
 import PropTypes from 'prop-types';
 import DetailPageAction from './DetailPageAction.jsx';
 import { showFormattedDate } from '../utils/index.js';
+import NoteBodyParser from './NoteBodyParser.jsx';
 
 function NoteDetail({
   id, title, createdAt, body, archived, onArchiveClick, onDeleteClick,
@@ -11,7 +11,7 @@ function NoteDetail({
     <section className="detail-page">
       <h3 className="detail-page__title">{title}</h3>
       <p className="detail-page__createdAt">{showFormattedDate(createdAt)}</p>
-      <div className="detail-page__body">{parser(body)}</div>
+      <NoteBodyParser body={body} />
       <DetailPageAction
         archived={archived}
         onArchiveClick={() => onArchiveClick(id)}

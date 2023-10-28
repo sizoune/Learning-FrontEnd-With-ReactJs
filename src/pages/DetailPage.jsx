@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import autoBind from 'react-auto-bind';
+import PropTypes from 'prop-types';
 import {
   archiveNote, deleteNote, getNote, unarchiveNote,
 } from '../utils/local-data.js';
@@ -58,5 +59,9 @@ class DetailPage extends React.Component {
     );
   }
 }
+
+DetailPage.propTypes = {
+  backtoHome: PropTypes.func.isRequired,
+};
 
 export default DetailPageWrapper;

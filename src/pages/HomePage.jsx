@@ -2,7 +2,8 @@ import React from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import autoBind from 'react-auto-bind';
 import { IoAddSharp } from 'react-icons/io5';
-import { getActiveNotes, getAllNotes } from '../utils/local-data.js';
+import PropTypes from 'prop-types';
+import { getActiveNotes } from '../utils/local-data.js';
 import SearchBar from '../components/SearchBar.jsx';
 import NoteList from '../components/NoteList.jsx';
 
@@ -59,20 +60,28 @@ class HomePage extends React.Component {
     const notes = this.state.notes.filter((note) => note.title.toLowerCase().includes(
       this.state.keyword.toLowerCase(),
     ));
-
     return (
       <section>
         <h2>Catatan Aktif</h2>
         <SearchBar keyword={this.state.keyword} keywordChange={this.onKeywordChangeHandler} />
         <NoteList notes={notes} />
-        <div className="homepage__action">
-          <button type="button" className="action" title="tambah" onClick={(event) => this.onAddNoteHandler(event)}>
-            <IoAddSharp />
-          </button>
-        </div>
+        {notes.length > 0 ? (
+          <div className="homepage__action">
+            <button type="button" className="action" title="tambah" onClick={(event) => this.onAddNoteHandler(event)}>
+              <IoAddSharp />
+            </button>
+          </div>
+        ) : (<div />)}
+
       </section>
     );
   }
 }
+
+HomePage.propTypes = {
+  defaultKeyword: PropTypes.string.isRequired,
+  keywordChange: PropTypes.func.isRequired,
+  navigateToAddPage: PropTypes.func.isRequired,
+};
 
 export default HomePageWrapper;
