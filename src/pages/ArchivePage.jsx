@@ -57,6 +57,8 @@ class ArchivePage extends React.Component {
 }
 
 ArchivePage.propTypes = {
+  // eslint-disable-next-line react/require-default-props
+  defaultKeyword: PropTypes.string,
   keywordChange: PropTypes.func.isRequired,
 };
 

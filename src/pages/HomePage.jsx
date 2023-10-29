@@ -79,6 +79,8 @@ class HomePage extends React.Component {
 }
 
 HomePage.propTypes = {
+  // eslint-disable-next-line react/require-default-props
+  defaultKeyword: PropTypes.string,
   keywordChange: PropTypes.func.isRequired,
   navigateToAddPage: PropTypes.func.isRequired,
 };
