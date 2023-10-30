@@ -2,7 +2,7 @@ import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import autoBind from 'react-auto-bind';
 import PropTypes from 'prop-types';
-import { getArchivedNotes } from '../utils/local-data.js';
+import { getArchivedNotes } from '../utils/network-data.js';
 import SearchBar from '../components/SearchBar.jsx';
 import NoteList from '../components/NoteList.jsx';
 
@@ -27,11 +27,21 @@ class ArchivePage extends React.Component {
     super(props);
 
     this.state = {
-      notes: getArchivedNotes(),
+      notes: [],
+      isLoading: true,
       keyword: props.defaultKeyword || '',
     };
 
     autoBind(this);
+  }
+
+  async componentDidMount() {
+    const { data } = await getArchivedNotes();
+
+    this.setState(() => ({
+      isLoading: false,
+      notes: data,
+    }));
   }
 
   onKeywordChangeHandler(keyword) {
@@ -43,6 +53,14 @@ class ArchivePage extends React.Component {
   }
 
   render() {
+    if (this.state.isLoading) {
+      return (
+        <section className="notes-list-empty">
+          <p>Sedang Mengambil Data!, Mohon Tunggu ...</p>
+        </section>
+      );
+    }
+
     const notes = this.state.notes.filter((note) => note.title.toLowerCase().includes(
       this.state.keyword.toLowerCase(),
     ));

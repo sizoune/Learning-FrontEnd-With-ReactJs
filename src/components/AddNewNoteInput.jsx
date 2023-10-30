@@ -45,11 +45,13 @@ class AddNewNoteInput extends React.Component {
             onInput={this.onBodyChangeHandler}
           />
         </div>
-        <div className="add-new-page__action">
-          <button type="button" className="action" title="simpan" onClick={(event) => this.onSubmitNoteHandler(event)}>
-            <BsCheckLg />
-          </button>
-        </div>
+        {this.props.isLoading ? <p>Mohon Tunggu, Sedang Menambahkan Data!</p> : (
+          <div className="add-new-page__action">
+            <button type="button" className="action" title="simpan" onClick={(event) => this.onSubmitNoteHandler(event)}>
+              <BsCheckLg />
+            </button>
+          </div>
+        )}
       </>
     );
   }
@@ -57,6 +59,7 @@ class AddNewNoteInput extends React.Component {
 
 AddNewNoteInput.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default AddNewNoteInput;

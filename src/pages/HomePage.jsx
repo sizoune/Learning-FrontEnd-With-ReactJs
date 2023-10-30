@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import autoBind from 'react-auto-bind';
 import { IoAddSharp } from 'react-icons/io5';
 import PropTypes from 'prop-types';
-import { getActiveNotes } from '../utils/local-data.js';
+import { getActiveNotes } from '../utils/network-data.js';
 import SearchBar from '../components/SearchBar.jsx';
 import NoteList from '../components/NoteList.jsx';
 
@@ -35,11 +35,21 @@ class HomePage extends React.Component {
     super(props);
 
     this.state = {
-      notes: getActiveNotes(),
+      notes: [],
+      isLoading: true,
       keyword: props.defaultKeyword || '',
     };
 
     autoBind(this);
+  }
+
+  async componentDidMount() {
+    const { data } = await getActiveNotes();
+
+    this.setState(() => ({
+      isLoading: false,
+      notes: data,
+    }));
   }
 
   onKeywordChangeHandler(keyword) {
@@ -57,6 +67,14 @@ class HomePage extends React.Component {
   }
 
   render() {
+    if (this.state.isLoading) {
+      return (
+        <section className="notes-list-empty">
+          <p>Sedang Mengambil Data!, Mohon Tunggu ...</p>
+        </section>
+      );
+    }
+
     const notes = this.state.notes.filter((note) => note.title.toLowerCase().includes(
       this.state.keyword.toLowerCase(),
     ));
@@ -65,14 +83,11 @@ class HomePage extends React.Component {
         <h2>Catatan Aktif</h2>
         <SearchBar keyword={this.state.keyword} keywordChange={this.onKeywordChangeHandler} />
         <NoteList notes={notes} />
-        {notes.length > 0 ? (
-          <div className="homepage__action">
-            <button type="button" className="action" title="tambah" onClick={(event) => this.onAddNoteHandler(event)}>
-              <IoAddSharp />
-            </button>
-          </div>
-        ) : (<div />)}
-
+        <div className="homepage__action">
+          <button type="button" className="action" title="tambah" onClick={(event) => this.onAddNoteHandler(event)}>
+            <IoAddSharp />
+          </button>
+        </div>
       </section>
     );
   }

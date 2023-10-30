@@ -13,8 +13,10 @@
         "react/jsx-props-no-spreading": "off",
         "react/prop-types": "off",
         "react/forbid-prop-types": "off",
+        "react/require-default-props": "off",
         "react/jsx-no-bind": "off",
         "react/destructuring-assignment": "off",
-        "import/no-extraneous-dependencies": "off"
+        "import/no-extraneous-dependencies": "off",
+        "jsx-a11y/label-has-associated-control": "off"
     }
 }

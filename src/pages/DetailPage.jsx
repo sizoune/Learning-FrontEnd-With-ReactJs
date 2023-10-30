@@ -4,7 +4,7 @@ import autoBind from 'react-auto-bind';
 import PropTypes from 'prop-types';
 import {
   archiveNote, deleteNote, getNote, unarchiveNote,
-} from '../utils/local-data.js';
+} from '../utils/network-data.js';
 import NoteDetail from '../components/NoteDetail.jsx';
 
 function DetailPageWrapper() {
@@ -23,27 +23,49 @@ class DetailPage extends React.Component {
     super(props);
 
     this.state = {
-      note: getNote(props.id),
+      note: null,
+      isGettingData: true,
+      isLoading: false,
     };
 
     autoBind(this);
   }
 
-  onDeleteHandler(id) {
-    deleteNote(id);
+  async componentDidMount() {
+    const { data } = await getNote(this.props.id);
+    this.setState(() => ({
+      isGettingData: false,
+      note: data,
+    }));
+  }
+
+  async onDeleteHandler(id) {
+    this.setState(() => ({ isLoading: true }));
+    await deleteNote(id);
+    this.setState(() => ({ isLoading: false }));
     this.props.backtoHome();
   }
 
-  onArchiveHandler(id) {
-    if (getNote(id).archived) {
-      unarchiveNote(id);
+  async onArchiveHandler(id) {
+    this.setState(() => ({ isLoading: true }));
+    if (this.state.note.archived) {
+      await unarchiveNote(id);
     } else {
-      archiveNote(id);
+      await archiveNote(id);
     }
+    this.setState(() => ({ isLoading: false }));
     this.props.backtoHome();
   }
 
   render() {
+    if (this.state.isGettingData) {
+      return (
+        <section className="notes-list-empty">
+          <p>Sedang Mengambil Data!, Mohon Tunggu ...</p>
+        </section>
+      );
+    }
+
     if (this.state.note === null) {
       return <p>Note not found!</p>;
     }
@@ -53,6 +75,7 @@ class DetailPage extends React.Component {
         <NoteDetail
           onDeleteClick={this.onDeleteHandler}
           onArchiveClick={this.onArchiveHandler}
+          isLoading={this.state.isLoading}
           {...this.state.note}
         />
       </section>

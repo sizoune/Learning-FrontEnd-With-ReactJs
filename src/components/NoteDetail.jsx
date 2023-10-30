@@ -5,8 +5,15 @@ import { showFormattedDate } from '../utils/index.js';
 import NoteBodyParser from './NoteBodyParser.jsx';
 
 function NoteDetail({
-  id, title, createdAt, body, archived, onArchiveClick, onDeleteClick,
+  id, title, createdAt, body, archived, onArchiveClick, onDeleteClick, isLoading,
 }) {
+  if (isLoading) {
+    return (
+      <section className="detail-page">
+        <p>Mohong Tunggu ...</p>
+      </section>
+    );
+  }
   return (
     <section className="detail-page">
       <h3 className="detail-page__title">{title}</h3>
@@ -27,6 +34,7 @@ NoteDetail.propTypes = {
   createdAt: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
   archived: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   onArchiveClick: PropTypes.func.isRequired,
   onDeleteClick: PropTypes.func.isRequired,
 };
