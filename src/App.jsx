@@ -19,7 +19,11 @@ function App() {
   const [loggedUser, setLoggedUser] = React.useState(null);
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+    setTheme((prevTheme) => {
+      const newTheme = prevTheme === 'light' ? 'dark' : 'light';
+      localStorage.setItem('theme', newTheme);
+      return newTheme;
+    });
   };
 
   const themeContextValue = React.useMemo(() => ({
@@ -28,6 +32,7 @@ function App() {
   }), [theme]);
 
   React.useEffect(() => {
+    setTheme(localStorage.getItem('theme') || 'light');
     setAccessToken(getAccessToken());
   }, []);
 
