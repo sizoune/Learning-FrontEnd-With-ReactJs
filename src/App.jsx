@@ -11,15 +11,11 @@ import LoginPage from './pages/LoginPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
 import MainLayout from './components/MainLayout.jsx';
 import DashboardPage from './pages/DashboardPage.jsx';
-import { hideSuccessActionCreator } from './states/isSuccess/action.js';
-import { hideErrorActionCreator } from './states/isError/action.js';
 
 function App() {
   const {
     authUser = null,
     isPreload = false,
-    error = { isError: false, errorMessage: '' },
-    success = { isSuccess: false, successMessage: '' },
   } = useSelector((states) => states);
 
   const dispatch = useDispatch();
@@ -33,15 +29,6 @@ function App() {
     dispatch(asyncUnsetAuthUser());
   };
 
-  const onErrorClose = () => {
-    dispatch(hideErrorActionCreator());
-  };
-
-  const onSuccessClose = () => {
-    dispatch(hideSuccessActionCreator());
-    // navigate('/login');
-  };
-
   if (isPreload) {
     return null;
   }
@@ -50,7 +37,7 @@ function App() {
     <RouterProvider router={
         createBrowserRouter(
           createRoutesFromElements(
-            <Route path="/" element={authUser === null ? <AuthLayout error={error} success={success} onErrorClose={onErrorClose} onSuccessClosed={onSuccessClose} /> : <MainLayout />}>
+            <Route path="/" element={authUser === null ? <AuthLayout /> : <MainLayout />}>
               <Route element={authUser === null ? <Outlet /> : <Navigate to="/" />}>
                 <Route path="login" element={<LoginPage />} />
                 <Route path="register" element={<RegisterPage />} />

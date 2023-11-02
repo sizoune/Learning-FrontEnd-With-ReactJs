@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { MdOutlineForum } from 'react-icons/md';
 import { asyncSetAuthUser } from '../states/authUser/action.js';
 import LoginInput from '../components/LoginInput.jsx';
+import ErrorDialog from '../components/ErrorDialog.jsx';
+import { hideErrorActionCreator } from '../states/isError/action.js';
 
 function LoginPage() {
   const dispatch = useDispatch();
-  const { isLoading } = useSelector((states) => states);
+  const { isLoading, error } = useSelector((states) => states);
 
   const onLogin = ({ email, password }) => {
     dispatch(asyncSetAuthUser({ email, password }));
@@ -14,6 +16,12 @@ function LoginPage() {
 
   return (
     <>
+      {error.isError && (
+        <ErrorDialog
+          onClose={() => dispatch(hideErrorActionCreator())}
+          errorMessage={error.errorMessage}
+        />
+      )}
       <a href="/" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
         <MdOutlineForum className="w-8 h-8 mr-2" />
         My Forum App

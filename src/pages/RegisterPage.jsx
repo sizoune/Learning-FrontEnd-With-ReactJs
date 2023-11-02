@@ -1,20 +1,43 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { MdOutlineForum } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 import { asyncRegisterUser } from '../states/users/action.js';
 import RegisterInput from '../components/RegisterInput.jsx';
+import { hideSuccessActionCreator } from '../states/isSuccess/action.js';
+import SuccessDialog from '../components/SuccessDialog.jsx';
+import ErrorDialog from '../components/ErrorDialog.jsx';
+import { hideErrorActionCreator } from '../states/isError/action.js';
 
 function RegisterPage() {
   const dispatch = useDispatch();
-  const { isLoading } = useSelector((states) => states);
+  const { isLoading, error, success } = useSelector((states) => states);
+  const navigate = useNavigate();
 
   const onRegister = ({ name, email, password }) => {
     // @TODO: dispatch async action to register
     dispatch(asyncRegisterUser({ name, email, password }));
   };
 
+  const onSuccessClosed = () => {
+    dispatch(hideSuccessActionCreator());
+    navigate('/login');
+  };
+
   return (
     <>
+      {success.isSuccess && (
+        <SuccessDialog
+          onClose={onSuccessClosed}
+          successMessage={success.successMessage}
+        />
+      )}
+      {error.isError && (
+        <ErrorDialog
+          onClose={() => dispatch(hideErrorActionCreator())}
+          errorMessage={error.errorMessage}
+        />
+      )}
       <a href="/" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
         <MdOutlineForum className="w-8 h-8 mr-2" />
         My Forum App
