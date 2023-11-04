@@ -19,6 +19,7 @@ module.exports = {
         ],
         'import/no-extraneous-dependencies': ['off'],
         'import/extensions': ['off'],
-        'jsx-a11y/label-has-associated-control': ['off']
+        'jsx-a11y/label-has-associated-control': ['off'],
+        'react/jsx-props-no-spreading': ['off']
     },
 }

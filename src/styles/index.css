@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.add-shadow-below{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.thread-item-body{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* number of lines to show */
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.thread-input-body{
+    font-size: 14px;
+    min-height: 100px;
+    padding: 8px;
+}

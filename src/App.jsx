@@ -11,6 +11,8 @@ import LoginPage from './pages/LoginPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
 import MainLayout from './components/MainLayout.jsx';
 import DashboardPage from './pages/DashboardPage.jsx';
+import ProfilePage from './pages/ProfilePage.jsx';
+import NewThreadPage from './pages/NewThreadPage.jsx';
 
 function App() {
   const {
@@ -35,25 +37,23 @@ function App() {
 
   return (
     <RouterProvider router={
-        createBrowserRouter(
-          createRoutesFromElements(
-            <Route path="/" element={authUser === null ? <AuthLayout /> : <MainLayout />}>
-              <Route element={authUser === null ? <Outlet /> : <Navigate to="/" />}>
-                <Route path="login" element={<LoginPage />} />
-                <Route path="register" element={<RegisterPage />} />
-              </Route>
+            createBrowserRouter(
+              createRoutesFromElements(
+                <Route path="/" element={authUser === null ? <AuthLayout /> : <MainLayout onUserClick={onSignOut} />}>
+                  <Route element={authUser === null ? <Outlet /> : <Navigate to="/" />}>
+                    <Route path="login" element={<LoginPage />} />
+                    <Route path="register" element={<RegisterPage />} />
+                  </Route>
 
-              <Route element={authUser !== null ? <Outlet /> : <Navigate to="/login" />}>
-                <Route index element={<DashboardPage />} />
-
-                {/* <Route path='archive' element={<ArchivesPage />} /> */}
-                {/* <Route path='notes/:id' element={<Detail />} /> */}
-                {/* <Route path='new' element{<AddNote />} /> */}
-              </Route>
-            </Route>,
-          ),
-        )
-      }
+                  <Route element={authUser === null && <Navigate to="/login" />}>
+                    <Route index element={<DashboardPage />} />
+                    <Route path="user/me" element={<ProfilePage />} />
+                    <Route path="new_thread" element={<NewThreadPage />} />
+                  </Route>
+                </Route>,
+              ),
+            )
+        }
     />
   );
 }

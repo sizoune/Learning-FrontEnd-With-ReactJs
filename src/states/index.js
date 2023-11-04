@@ -5,6 +5,7 @@ import usersReducer from './users/reducer.js';
 import isLoadingReducer from './isLoading/reducer.js';
 import isErrorReducer from './isError/reducer.js';
 import isSuccessReducer from './isSuccess/reducer.js';
+import threadsReducer from './threads/reducer.js';
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     isLoading: isLoadingReducer,
     error: isErrorReducer,
     success: isSuccessReducer,
+    threads: threadsReducer,
   },
 });
 

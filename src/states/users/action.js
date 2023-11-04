@@ -21,7 +21,7 @@ function asyncRegisterUser({ name, email, password }) {
     dispatch(startLoadingActionCreator());
     try {
       await api.register({ name, email, password });
-      dispatch(showSuccessActionCreator('Pendaftaran Berhasil!'));
+      dispatch(showSuccessActionCreator('Pendaftaran Berhasil, Anda akan diarahkan ke login dalam 3 detik!'));
     } catch (error) {
       dispatch(showErrorActionCreator(error.message));
     }
