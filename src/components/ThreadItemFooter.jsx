@@ -4,27 +4,39 @@ import {
 } from 'react-icons/bi';
 import { AiOutlineComment } from 'react-icons/ai';
 import PropTypes, { string } from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { postedAt } from '../utils/helper.js';
+import {
+  asyncToggleDownVoteThread,
+  asyncToggleNeutralizedVoteThread,
+  asyncToggleUpVoteThread,
+} from '../states/threads/action.js';
 
 function ThreadItemFooter({
-  threadId, onUpVote, onDownVote, upVotesBy, downVotesBy, authUser, createdAt, totalComments,
+  threadId, upVotesBy, downVotesBy, authUser, createdAt, totalComments,
 }) {
+  const dispatch = useDispatch();
+
   const onDownVoteClick = (event) => {
     event.stopPropagation();
-    onDownVote(threadId);
+    dispatch(asyncToggleDownVoteThread(threadId));
   };
   const onUpVoteClick = (event) => {
     event.stopPropagation();
-    onUpVote(threadId);
+    dispatch(asyncToggleUpVoteThread(threadId));
+  };
+  const onNeutralizedEvent = (event, voteType) => {
+    event.stopPropagation();
+    dispatch(asyncToggleNeutralizedVoteThread(threadId, voteType));
   };
 
   return (
     <div className="flex items-center gap-4 mt-3.5">
-      <button type="button" onClick={onUpVoteClick} className="flex items-center gap-1">
+      <button type="button" onClick={upVotesBy.includes(authUser) ? (event) => onNeutralizedEvent(event, 'upvote') : onUpVoteClick} className="flex items-center gap-1">
         {upVotesBy.includes(authUser) ? <BiSolidLike /> : <BiLike />}
         {upVotesBy.length}
       </button>
-      <button type="button" onClick={onDownVoteClick} className="flex items-center gap-1">
+      <button type="button" onClick={downVotesBy.includes(authUser) ? (event) => onNeutralizedEvent(event, 'downvote') : onDownVoteClick} className="flex items-center gap-1">
         {downVotesBy.includes(authUser) ? <BiSolidDislike /> : <BiDislike />}
         {downVotesBy.length}
       </button>
@@ -39,8 +51,6 @@ function ThreadItemFooter({
 }
 
 ThreadItemFooter.propTypes = {
-  onUpVote: PropTypes.func.isRequired,
-  onDownVote: PropTypes.func.isRequired,
   upVotesBy: PropTypes.arrayOf(string).isRequired,
   downVotesBy: PropTypes.arrayOf(string).isRequired,
   authUser: PropTypes.string.isRequired,

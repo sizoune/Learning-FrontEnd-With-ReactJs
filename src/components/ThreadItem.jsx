@@ -13,8 +13,6 @@ function ThreadItem({
   upVotesBy,
   downVotesBy,
   totalComments,
-  onDownVote,
-  onUpVote,
   createdAt,
   threadId,
 }) {
@@ -44,10 +42,8 @@ function ThreadItem({
       </div>
       <ThreadItemFooter
         threadId={threadId}
-        onDownVote={onDownVote}
         createdAt={createdAt}
         totalComments={totalComments}
-        onUpVote={onUpVote}
         upVotesBy={upVotesBy}
         downVotesBy={downVotesBy}
         authUser={authUser}
@@ -78,8 +74,6 @@ const threadItemShape = {
 
 ThreadItem.propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  onUpVote: PropTypes.func.isRequired,
-  onDownVote: PropTypes.func.isRequired,
   ...threadItemShape,
 };
 

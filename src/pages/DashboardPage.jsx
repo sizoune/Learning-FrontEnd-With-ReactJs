@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { dummyThreads } from '../utils/helper.js';
 import ThreadList from '../components/ThreadList.jsx';
-import asyncPopulateUsersAndThreads from '../states/shared/action.js';
+import { asyncPopulateUsersAndThreads } from '../states/shared/action.js';
 import CategoryList from '../components/CategoryList.jsx';
 
 function DashboardPage() {
@@ -20,14 +20,6 @@ function DashboardPage() {
   useEffect(() => {
     dispatch(asyncPopulateUsersAndThreads());
   }, [dispatch]);
-
-  const onUpVoteClick = (threadId) => {
-    dispatch();
-  };
-
-  const onDownVoteClick = (threadId) => {
-
-  };
 
   const originThreadList = threads.map((thread) => ({
     ...thread,
@@ -56,8 +48,6 @@ function DashboardPage() {
       <ThreadList
         isLoading={isLoading}
         threads={filteredThread}
-        onUpVote={onUpVoteClick}
-        onDownVote={onDownVoteClick}
       />
     </div>
   );

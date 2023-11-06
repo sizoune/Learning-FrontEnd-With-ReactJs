@@ -20,19 +20,5 @@ function asyncPopulateUsersAndThreads() {
   };
 }
 
-function asyncUpVote(threadId) {
-  return async (dispatch, getState) => {
-    dispatch(startLoadingActionCreator());
-    const { authUser } = getState();
-
-    try {
-      await api.upVoteThread(threadId);
-    } catch (error) {
-      alert(error.message);
-      dispatch(toggleLikeTalkActionCreator({ talkId, userId: authUser.id }));
-    }
-    dispatch(hideLoading());
-  };
-}
-
-export default asyncPopulateUsersAndThreads;
+// eslint-disable-next-line import/prefer-default-export
+export { asyncPopulateUsersAndThreads };
