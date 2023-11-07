@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import { startLoadingActionCreator, stopLoadingActionCreator } from '../isLoading/action';
 import api from '../../utils/api';
 import { showSuccessActionCreator } from '../isSuccess/action';
@@ -18,6 +19,7 @@ function receiveUsersActionCreator(users) {
 
 function asyncRegisterUser({ name, email, password }) {
   return async (dispatch) => {
+    dispatch(showLoading());
     dispatch(startLoadingActionCreator());
     try {
       await api.register({ name, email, password });
@@ -26,6 +28,7 @@ function asyncRegisterUser({ name, email, password }) {
       dispatch(showErrorActionCreator(error.message));
     }
     dispatch(stopLoadingActionCreator());
+    dispatch(hideLoading());
   };
 }
 

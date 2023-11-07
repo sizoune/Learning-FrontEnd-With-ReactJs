@@ -1,11 +1,13 @@
 import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { MdOutlineForum } from 'react-icons/md';
+import Loading from './Loading.jsx';
 
 function MainLayout() {
   const navigate = useNavigate();
   return (
     <>
+      <Loading />
       <nav className="bg-white border-gray-200 dark:bg-blue-900 fixed top-0 w-full">
         <div className=" ms-5 max-w-screen-xl justify-between p-5">
           <a href="/" className="flex items-center text-2xl font-semibold text-gray-900 dark:text-white">

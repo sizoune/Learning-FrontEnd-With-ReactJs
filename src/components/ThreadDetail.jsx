@@ -14,6 +14,7 @@ import {
   asyncToggleNeutralizedVoteThread,
   asyncToggleUpVoteThread,
 } from '../states/threads/action.js';
+import { userShape } from './ThreadItem.jsx';
 
 function ThreadDetail({
   title,
@@ -79,7 +80,7 @@ function ThreadDetail({
         </button>
         <div className="flex items-center gap-1">
           <span>Dibuat oleh</span>
-          <img className="w-8 h-8 rounded-full shadow-lg" src={ownerAvatar} alt="Bonnie image" />
+          <img className="w-8 h-8 rounded-full shadow-lg" src={ownerAvatar} alt="" />
           <span>{ownerName}</span>
         </div>
         <p>{postedAt(createdAt)}</p>
@@ -98,7 +99,7 @@ ThreadDetail.propTypes = {
   ownerAvatar: PropTypes.string.isRequired,
   upVotesBy: PropTypes.arrayOf(string).isRequired,
   downVotesBy: PropTypes.arrayOf(string).isRequired,
-  authUser: PropTypes.string.isRequired,
+  authUser: PropTypes.shape(userShape).isRequired,
   createdAt: PropTypes.string.isRequired,
 };
 

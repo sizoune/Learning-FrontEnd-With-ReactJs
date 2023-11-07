@@ -20,3 +20,8 @@
     min-height: 100px;
     padding: 8px;
 }
+
+.loading {
+    position: sticky;
+    top: 0;
+}

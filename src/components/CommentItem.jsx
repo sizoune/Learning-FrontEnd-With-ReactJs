@@ -11,7 +11,6 @@ import {
   asyncToggleNeutralizedVoteComment,
   asyncToggleUpVoteComment,
 } from '../states/comments/action.js';
-import { userShape } from './ThreadItem.jsx';
 
 function CommentItem({
   commentId, avatar, name, createdAt, content, upVotesBy, downVotesBy, authUser,
@@ -74,7 +73,7 @@ CommentItem.propTypes = {
   commentId: PropTypes.string.isRequired,
   avatar: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  authUser: PropTypes.shape(userShape).isRequired,
+  authUser: PropTypes.string.isRequired,
   ...commentItemShape,
 };
 

@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import { startLoadingActionCreator, stopLoadingActionCreator } from '../isLoading/action.js';
 import api from '../../utils/api.js';
 import { showErrorActionCreator } from '../isError/action.js';
@@ -50,6 +51,7 @@ function toggleDownVoteThreadActionCreator({ threadId, userId }) {
 
 function asyncAddThread({ title, body, category = 'General' }) {
   return async (dispatch) => {
+    dispatch(showLoading());
     dispatch(startLoadingActionCreator());
     try {
       const thread = await api.createThread({ title, body, category });
@@ -59,11 +61,13 @@ function asyncAddThread({ title, body, category = 'General' }) {
       dispatch(showErrorActionCreator(error.message));
     }
     dispatch(stopLoadingActionCreator());
+    dispatch(hideLoading());
   };
 }
 
 function asyncToggleUpVoteThread(threadId) {
   return async (dispatch, getState) => {
+    dispatch(showLoading());
     // dispatch(startLoadingActionCreator());
     const { authUser } = getState();
     dispatch(toggleUpVoteThreadActionCreator({ threadId, userId: authUser.id }));
@@ -74,12 +78,14 @@ function asyncToggleUpVoteThread(threadId) {
       dispatch(showErrorActionCreator(error.message));
       dispatch(toggleUpVoteThreadActionCreator({ threadId, userId: authUser.id }));
     }
+    dispatch(hideLoading());
     // dispatch(stopLoadingActionCreator());
   };
 }
 
 function asyncToggleDownVoteThread(threadId) {
   return async (dispatch, getState) => {
+    dispatch(showLoading());
     const { authUser } = getState();
     dispatch(toggleDownVoteThreadActionCreator({ threadId, userId: authUser.id }));
 
@@ -89,11 +95,13 @@ function asyncToggleDownVoteThread(threadId) {
       dispatch(showErrorActionCreator(error.message));
       dispatch(toggleDownVoteThreadActionCreator({ threadId, userId: authUser.id }));
     }
+    dispatch(hideLoading());
   };
 }
 
 function asyncToggleNeutralizedVoteThread(threadId, voteType) {
   return async (dispatch, getState) => {
+    dispatch(showLoading());
     const { authUser } = getState();
     if (voteType === 'upvote') {
       dispatch(toggleUpVoteThreadActionCreator({ threadId, userId: authUser.id }));
@@ -111,6 +119,7 @@ function asyncToggleNeutralizedVoteThread(threadId, voteType) {
         dispatch(toggleDownVoteThreadActionCreator({ threadId, userId: authUser.id }));
       }
     }
+    dispatch(hideLoading());
   };
 }
 
