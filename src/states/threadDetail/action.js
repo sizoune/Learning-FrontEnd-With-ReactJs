@@ -62,14 +62,14 @@ function asyncReceiveThreadDetail(threadId) {
   };
 }
 
-function asyncToggleUpVoteThreadDetail(commentId) {
+function asyncToggleUpVoteThreadDetail() {
   return async (dispatch, getState) => {
     dispatch(showLoading());
     const { authUser, threadDetail } = getState();
     dispatch(toggleUpVoteThreadDetailActionCreator(authUser.id));
 
     try {
-      await api.upVoteComment({ threadId: threadDetail.id, commentId });
+      await api.upVoteThread(threadDetail.id);
     } catch (error) {
       dispatch(showErrorActionCreator(error.message));
       dispatch(toggleUpVoteThreadDetailActionCreator(authUser.id));
@@ -78,14 +78,14 @@ function asyncToggleUpVoteThreadDetail(commentId) {
   };
 }
 
-function asyncToggleDownVoteThreadDetail(commentId) {
+function asyncToggleDownVoteThreadDetail() {
   return async (dispatch, getState) => {
     dispatch(showLoading());
     const { authUser, threadDetail } = getState();
     dispatch(toggleDownVoteThreadDetailActionCreator(authUser.id));
 
     try {
-      await api.downVoteComment({ threadId: threadDetail.id, commentId });
+      await api.downVoteThread(threadDetail.id);
     } catch (error) {
       dispatch(showErrorActionCreator(error.message));
       dispatch(toggleDownVoteThreadDetailActionCreator(authUser.id));
@@ -94,7 +94,7 @@ function asyncToggleDownVoteThreadDetail(commentId) {
   };
 }
 
-function asyncToggleNeutralizedVoteThreadDetail(commentId, voteType) {
+function asyncToggleNeutralizedVoteThreadDetail(voteType) {
   return async (dispatch, getState) => {
     dispatch(showLoading());
     const { authUser, threadDetail } = getState();
@@ -105,7 +105,7 @@ function asyncToggleNeutralizedVoteThreadDetail(commentId, voteType) {
     }
 
     try {
-      await api.neutralizeVoteComment({ threadId: threadDetail.id, commentId });
+      await api.neutralizeVoteThread(threadDetail.id);
     } catch (error) {
       dispatch(showErrorActionCreator(error.message));
       if (voteType === 'upvote') {

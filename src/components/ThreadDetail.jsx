@@ -14,6 +14,11 @@ import {
   asyncToggleUpVoteThread,
 } from '../states/threads/action.js';
 import { userShape } from './ThreadItem.jsx';
+import {
+  asyncToggleDownVoteThreadDetail,
+  asyncToggleNeutralizedVoteThreadDetail,
+  asyncToggleUpVoteThreadDetail
+} from "../states/threadDetail/action.js";
 
 function ThreadDetail({
   title,
@@ -35,15 +40,15 @@ function ThreadDetail({
 
   const onDownVoteClick = (event) => {
     event.stopPropagation();
-    dispatch(asyncToggleDownVoteThread());
+    dispatch(asyncToggleDownVoteThreadDetail());
   };
   const onUpVoteClick = (event) => {
     event.stopPropagation();
-    dispatch(asyncToggleUpVoteThread());
+    dispatch(asyncToggleUpVoteThreadDetail());
   };
   const onNeutralizedEvent = (event, voteType) => {
     event.stopPropagation();
-    dispatch(asyncToggleNeutralizedVoteThread(voteType));
+    dispatch(asyncToggleNeutralizedVoteThreadDetail(voteType));
   };
 
   const onAddThreadComment = ({ content }) => {
