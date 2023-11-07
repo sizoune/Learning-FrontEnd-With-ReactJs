@@ -1,6 +1,5 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { asyncUnsetAuthUser, unsetAuthUserActionCreator } from '../states/authUser/action.js';
+import { asyncUnsetAuthUser } from '../states/authUser/action.js';
 
 function ProfilePage() {
   const {

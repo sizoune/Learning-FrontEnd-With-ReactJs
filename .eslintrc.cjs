@@ -6,7 +6,6 @@ module.exports = {
         'plugin:react/recommended',
         'plugin:react/jsx-runtime',
         'plugin:react-hooks/recommended',
-        'airbnb',
     ],
     ignorePatterns: ['dist', '.eslintrc.cjs'],
     parserOptions: {ecmaVersion: 'latest', sourceType: 'module'},
@@ -21,6 +20,7 @@ module.exports = {
         'import/extensions': ['off'],
         'jsx-a11y/label-has-associated-control': ['off'],
         'react/jsx-props-no-spreading': ['off'],
-        'react-hooks/exhaustive-deps':['off']
+        'react-hooks/exhaustive-deps':['off'],
+        'no-underscore-dangle':['off']
     },
 }

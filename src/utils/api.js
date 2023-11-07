@@ -1,13 +1,11 @@
 const api = (() => {
   const BASE_URL = 'https://forum-api.dicoding.dev/v1';
 
-  // eslint-disable-next-line no-underscore-dangle
   async function _fetchWithAuth(url, options = {}) {
     return fetch(url, {
       ...options,
       headers: {
         ...options.headers,
-        // eslint-disable-next-line no-use-before-define
         Authorization: `Bearer ${getAccessToken()}`,
       },
     });

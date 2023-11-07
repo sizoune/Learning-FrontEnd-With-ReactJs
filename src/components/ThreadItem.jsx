@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes, { string } from 'prop-types';
 import parse from 'html-react-parser';
 import { useNavigate } from 'react-router-dom';

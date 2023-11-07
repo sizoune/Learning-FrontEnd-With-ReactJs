@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { dummyThreads } from '../utils/helper.js';
 import ThreadList from '../components/ThreadList.jsx';

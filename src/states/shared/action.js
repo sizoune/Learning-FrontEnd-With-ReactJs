@@ -23,5 +23,4 @@ function asyncPopulateUsersAndThreads() {
   };
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export { asyncPopulateUsersAndThreads };
