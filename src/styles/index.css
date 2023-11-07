@@ -24,4 +24,6 @@
 .loading {
     position: sticky;
     top: 0;
+    height: 30px;
+    background-color: brown;
 }
