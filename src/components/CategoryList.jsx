@@ -8,6 +8,7 @@ function CategoryList({ categories, currentCategory, onCategoryClick }) {
       <h1 className="text-xl font-bold mb-5">Diskusi Berdasarkan Kategori</h1>
       { categories.map((category) => (
         <CategoryItem
+          key={category}
           name={category}
           isCurrentlySelected={category === currentCategory}
           onCategoryClick={onCategoryClick}

@@ -6,6 +6,8 @@ import isLoadingReducer from './isLoading/reducer.js';
 import isErrorReducer from './isError/reducer.js';
 import isSuccessReducer from './isSuccess/reducer.js';
 import threadsReducer from './threads/reducer.js';
+import threadDetailDetailReducer from './threadDetail/reducer.js';
+import commentsReducer from './comments/reducer.js';
 
 const store = configureStore({
   reducer: {
@@ -16,6 +18,8 @@ const store = configureStore({
     error: isErrorReducer,
     success: isSuccessReducer,
     threads: threadsReducer,
+    threadDetail: threadDetailDetailReducer,
+    comments: commentsReducer,
   },
 });
 
