@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { asyncUnsetAuthUser } from '../states/authUser/action.js';
 
 function ProfilePage() {
-  const {
-    authUser,
-  } = useSelector((states) => states);
+  const authUser = useSelector((state) => state.authUser);
 
   const dispatch = useDispatch();
 

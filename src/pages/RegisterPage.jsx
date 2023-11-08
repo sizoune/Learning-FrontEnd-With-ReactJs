@@ -10,8 +10,11 @@ import ErrorDialog from '../components/ErrorDialog.jsx';
 import { hideErrorActionCreator } from '../states/isError/action.js';
 
 function RegisterPage() {
+  const error = useSelector((state) => state.error);
+  const isLoading = useSelector((state) => state.isLoading);
+  const success = useSelector((state) => state.success);
+
   const dispatch = useDispatch();
-  const { isLoading, error, success } = useSelector((states) => states);
   const navigate = useNavigate();
 
   const onRegister = ({ name, email, password }) => {

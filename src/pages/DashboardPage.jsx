@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { dummyThreads } from '../utils/helper.js';
 import ThreadList from '../components/ThreadList.jsx';
 import asyncPopulateUsersAndThreads from '../states/shared/action.js';
 import CategoryList from '../components/CategoryList.jsx';
 
 function DashboardPage() {
-  const {
-    users = [],
-    threads = dummyThreads,
-    authUser,
-    isLoading = true,
-  } = useSelector((states) => states);
+  const authUser = useSelector((state) => state.authUser);
+  const users = useSelector((state) => state.users);
+  const threads = useSelector((state) => state.threads);
+  const isLoading = useSelector((state) => state.isLoading);
 
   const [selectedCategory, setSelectedCategory] = useState('');
 

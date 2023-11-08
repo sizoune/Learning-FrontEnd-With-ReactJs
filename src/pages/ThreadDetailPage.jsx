@@ -8,11 +8,10 @@ import { hideErrorActionCreator } from '../states/isError/action.js';
 
 function ThreadDetailPage() {
   const { id } = useParams();
-  const {
-    threadDetail = null,
-    authUser,
-    error,
-  } = useSelector((states) => states);
+  const authUser = useSelector((state) => state.authUser);
+  const threadDetail = useSelector((state) => state.threadDetail);
+  const error = useSelector((state) => state.error);
+
   const dispatch = useDispatch();
 
   useEffect(() => {

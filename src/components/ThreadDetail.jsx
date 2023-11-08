@@ -27,10 +27,8 @@ function ThreadDetail({
   authUser,
   createdAt,
 }) {
-  const {
-    isLoading,
-    comments = [],
-  } = useSelector((states) => states);
+  const isLoading = useSelector((state) => state.isLoading);
+  const comments = useSelector((state) => state.comments);
 
   const dispatch = useDispatch();
 
@@ -67,7 +65,7 @@ function ThreadDetail({
       <h5 className="mt-5 mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h5>
 
       <div className="mt-4">
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{parse(body)}</p>
+        <div className="mb-3 font-normal text-gray-700 dark:text-gray-400">{parse(body)}</div>
       </div>
       <div className="flex items-center gap-4 mt-3.5 mb-5">
         <button type="button" onClick={upVotesBy.includes(authUser.id) ? (event) => onNeutralizedEvent(event, 'upvote') : onUpVoteClick} className="flex items-center gap-1">

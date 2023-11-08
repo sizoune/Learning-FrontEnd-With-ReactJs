@@ -31,7 +31,7 @@ function ThreadItem({
 
   if (isLoading) {
     return (
-      <div className="my-8 flex flex-wrap items-center justify-center w-56 h-56 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+      <div className="my-8 flex flex-wrap items-center justify-center w-56 h-56 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 min-w-full">
         <div className="px-3 py-1 text-xs font-medium leading-none text-center text-blue-800 bg-blue-200 rounded-full animate-pulse dark:bg-blue-900 dark:text-blue-200">loading...</div>
       </div>
     );
@@ -51,7 +51,7 @@ function ThreadItem({
         {user.name}
       </p>
       <div className="thread-item-body mt-4">
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{parse(body)}</p>
+        <div className="mb-3 font-normal text-gray-700 dark:text-gray-400">{parse(body)}</div>
       </div>
       <ThreadItemFooter
         threadId={threadId}

@@ -16,13 +16,10 @@ import NewThreadPage from './pages/NewThreadPage.jsx';
 import ThreadDetailPage from './pages/ThreadDetailPage.jsx';
 
 function App() {
-  const {
-    authUser = null,
-    isPreload = false,
-  } = useSelector((states) => states);
+  const authUser = useSelector((state) => state.authUser);
+  const isPreload = useSelector((state) => state.isPreload);
 
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(asyncPreloadProcess());

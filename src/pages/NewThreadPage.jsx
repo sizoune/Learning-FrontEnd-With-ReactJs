@@ -9,9 +9,12 @@ import { hideSuccessActionCreator } from '../states/isSuccess/action.js';
 import SuccessDialog from '../components/SuccessDialog.jsx';
 
 function NewThreadPage() {
+  const error = useSelector((state) => state.error);
+  const isLoading = useSelector((state) => state.isLoading);
+  const success = useSelector((state) => state.success);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isLoading, error, success } = useSelector((states) => states);
 
   const onAddThread = ({ title, category, body }) => {
     dispatch(asyncAddThread({ title, body, category }));

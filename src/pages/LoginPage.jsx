@@ -7,8 +7,10 @@ import ErrorDialog from '../components/ErrorDialog.jsx';
 import { hideErrorActionCreator } from '../states/isError/action.js';
 
 function LoginPage() {
+  const error = useSelector((state) => state.error);
+  const isLoading = useSelector((state) => state.isLoading);
+
   const dispatch = useDispatch();
-  const { isLoading, error } = useSelector((states) => states);
 
   const onLogin = ({ email, password }) => {
     dispatch(asyncSetAuthUser({ email, password }));
