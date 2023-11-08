@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { MdOutlineForum } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import { asyncRegisterUser } from '../states/users/action.js';
 import RegisterInput from '../components/RegisterInput.jsx';
 import { hideSuccessActionCreator } from '../states/isSuccess/action.js';

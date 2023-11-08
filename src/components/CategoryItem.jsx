@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 
 function CategoryItem({ name, isCurrentlySelected, onCategoryClick }) {
@@ -16,7 +17,7 @@ function CategoryItem({ name, isCurrentlySelected, onCategoryClick }) {
 CategoryItem.propTypes = {
   name: PropTypes.string.isRequired,
   isCurrentlySelected: PropTypes.bool.isRequired,
-  onCategoryClick: PropTypes.func,
+  onCategoryClick: PropTypes.func.isRequired,
 };
 
 export default CategoryItem;

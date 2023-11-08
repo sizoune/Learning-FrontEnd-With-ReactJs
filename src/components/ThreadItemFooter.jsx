@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   BiDislike, BiLike, BiSolidDislike, BiSolidLike,
 } from 'react-icons/bi';

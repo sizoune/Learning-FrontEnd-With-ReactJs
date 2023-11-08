@@ -1,3 +1,4 @@
+import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { MdOutlineForum } from 'react-icons/md';
 import Loading from './Loading.jsx';

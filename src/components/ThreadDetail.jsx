@@ -1,3 +1,4 @@
+import React from 'react';
 import parse from 'html-react-parser';
 import PropTypes, { string } from 'prop-types';
 import {
@@ -8,17 +9,12 @@ import { postedAt } from '../utils/helper.js';
 import ThreadDetailComment from './ThreadDetailComment.jsx';
 import { asyncAddComment } from '../states/comments/action.js';
 import CommentList from './CommentList.jsx';
-import {
-  asyncToggleDownVoteThread,
-  asyncToggleNeutralizedVoteThread,
-  asyncToggleUpVoteThread,
-} from '../states/threads/action.js';
 import { userShape } from './ThreadItem.jsx';
 import {
   asyncToggleDownVoteThreadDetail,
   asyncToggleNeutralizedVoteThreadDetail,
-  asyncToggleUpVoteThreadDetail
-} from "../states/threadDetail/action.js";
+  asyncToggleUpVoteThreadDetail,
+} from '../states/threadDetail/action.js';
 
 function ThreadDetail({
   title,
