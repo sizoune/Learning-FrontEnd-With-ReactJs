@@ -2,6 +2,7 @@ import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import { startLoadingActionCreator, stopLoadingActionCreator } from '../isLoading/action';
 import api from '../../utils/api';
 import { setAuthUserActionCreator } from '../authUser/action';
+import { showErrorActionCreator } from '../isError/action.js';
 
 const ActionType = {
   SET_IS_PRELOAD: 'SET_IS_PRELOAD',
@@ -27,6 +28,7 @@ function asyncPreloadProcess() {
     } catch (error) {
       // fallback process
       dispatch(setAuthUserActionCreator(null));
+      dispatch(showErrorActionCreator(error.message));
     } finally {
       // end preload process
       dispatch(setIsPreloadActionCreator(false));

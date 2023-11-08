@@ -23,6 +23,7 @@ module.exports = {
         'react/jsx-props-no-spreading': ['off'],
         'react-hooks/exhaustive-deps':['off'],
         'no-underscore-dangle':['off'],
-        'no-use-before-define':['off']
+        'no-use-before-define':['off'],
+        'max-len':['warn']
     },
 }
