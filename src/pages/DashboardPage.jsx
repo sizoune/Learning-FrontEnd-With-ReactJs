@@ -28,7 +28,13 @@ function DashboardPage() {
     (thread) => thread.category.includes(selectedCategory),
   );
 
-  const threadCategory = Object.groupBy(originThreadList, (thread) => thread.category);
+  const threadCategory = originThreadList.reduce((acc, thread) => {
+    if (!acc[thread.category]) {
+      acc[thread.category] = [];
+    }
+    acc[thread.category].push(thread);
+    return acc;
+  }, {});
 
   const categoryClickHandler = ({ name, isCurrentlySelected }) => {
     setSelectedCategory(isCurrentlySelected ? '' : name);
