@@ -5,8 +5,10 @@
  *  - should return the initial state when given by unknown action
  *  - should return the comments when given by RECEIVE_COMMENTS action
  *  - should return the comments with the new comment when given by ADD_COMMENT action
- *  - should return the comments with the toggled up_vote comment when given by TOGGLE_UP_VOTE_COMMENT action
- *  - should return the comments with the toggled down_vote comment when given by TOGGLE_DOWN_VOTE_COMMENT action
+ *  - should return the comments with the toggled up_vote comment
+ *    when given by TOGGLE_UP_VOTE_COMMENT action
+ *  - should return the comments with the toggled down_vote comment
+ *    when given by TOGGLE_DOWN_VOTE_COMMENT action
  */
 
 import { describe, it, expect } from 'vitest';

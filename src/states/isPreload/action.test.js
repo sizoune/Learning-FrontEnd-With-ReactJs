@@ -2,7 +2,8 @@
  * skenario test
  *
  * - asyncPreloadProcess thunk
- *  - should dispatch action correctly when data fetching success and dispatch preload process in the end
+ *  - should dispatch action correctly
+ *    when data fetching success and dispatch preload process in the end
  *  - should dispatch error action when data fetching failed and dispatch preload process in the end
  */
 import {

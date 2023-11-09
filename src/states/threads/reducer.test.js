@@ -5,8 +5,10 @@
  *  - should return the initial state when given by unknown action
  *  - should return the threads when given by RECEIVE_THREADS action
  *  - should return the threads with the new thread when given by ADD_THREAD action
- *  - should return the threads with the toggled up_vote thread when given by TOGGLE_UP_VOTE_THREAD action
- *  - should return the threads with the toggled down_vote thread when given by TOGGLE_DOWN_VOTE_THREAD action
+ *  - should return the threads with the toggled up_vote thread
+ *    when given by TOGGLE_UP_VOTE_THREAD action
+ *  - should return the threads with the toggled down_vote thread
+ *    when given by TOGGLE_DOWN_VOTE_THREAD action
  */
 
 import { describe, it, expect } from 'vitest';
