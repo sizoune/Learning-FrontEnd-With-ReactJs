@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { MdOutlineForum } from 'react-icons/md';
 import Loading from './Loading.jsx';
+import Container from './styled/Container.js';
 
 function MainLayout() {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ function MainLayout() {
           </a>
         </div>
       </nav>
-      <div className="container mx-auto mt-24">
+      <Container className="mt-24">
         <Outlet />
         <div id="main-menu" className="fixed z-40 w-full h-16 max-w-md -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 dark:bg-gray-700 dark:border-gray-600">
           <div className="grid h-full max-w-lg grid-cols-3 mx-auto">
@@ -54,7 +55,7 @@ function MainLayout() {
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </>
   );
 }

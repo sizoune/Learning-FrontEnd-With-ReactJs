@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import useInput from '../hooks/useInput';
+import Button from './styled/Button.js';
+import Input from './styled/Input.js';
 
 function LoginInput({ isLoading, login }) {
   const [email, onEmailChange] = useInput('');
@@ -11,11 +13,10 @@ function LoginInput({ isLoading, login }) {
     <form className="space-y-4 md:space-y-6" onSubmit={(event) => event.preventDefault()}>
       <div>
         <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-        <input
+        <Input
           type="email"
           name="email"
           id="email"
-          className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="your@email.com"
           value={email}
           onChange={onEmailChange}
@@ -24,12 +25,11 @@ function LoginInput({ isLoading, login }) {
       </div>
       <div>
         <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-        <input
+        <Input
           type="password"
           name="password"
           id="password"
           placeholder="password"
-          className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-7"
           value={password}
           onChange={onPasswordChange}
           required
@@ -37,10 +37,9 @@ function LoginInput({ isLoading, login }) {
       </div>
       {isLoading
         ? (
-          <button
+          <Button
             type="submit"
             disabled
-            className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:hover:bg-primary-700 dark:focus:ring-primary-800 mt-7"
           >
             <svg
               id="spinnerLoading"
@@ -61,16 +60,16 @@ function LoginInput({ isLoading, login }) {
               />
             </svg>
             Mohon Tunggu...
-          </button>
+          </Button>
         )
         : (
-          <button
+          <Button
             type="submit"
-            className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:hover:bg-primary-700 dark:focus:ring-primary-800 mt-7"
+            className=""
             onClick={() => login({ email, password })}
           >
             Login
-          </button>
+          </Button>
         )}
 
       <p className="text-sm font-light text-gray-500 dark:text-gray-400">

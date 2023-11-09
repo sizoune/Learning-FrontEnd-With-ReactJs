@@ -11,6 +11,7 @@ import {
   asyncToggleNeutralizedVoteComment,
   asyncToggleUpVoteComment,
 } from '../states/comments/action.js';
+import Card from './styled/Card.js';
 
 function CommentItem({
   commentId, avatar, name, createdAt, content, upVotesBy, downVotesBy, authUser,
@@ -31,7 +32,7 @@ function CommentItem({
   };
 
   return (
-    <div className="mb-8 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 min-w-full">
+    <Card>
       <div className="flex items-center mb-5">
         <div className="flex flex-1 items-center gap-2">
           <img className="w-6 h-6 rounded-full shadow-lg" src={avatar} alt="comment avatar" />
@@ -50,7 +51,7 @@ function CommentItem({
           {downVotesBy.length}
         </button>
       </div>
-    </div>
+    </Card>
   );
 }
 
