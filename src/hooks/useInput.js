@@ -7,7 +7,7 @@ function useInput(defaultValue = '', isHTMLInput = false) {
     setValue(isHTMLInput ? target.innerHTML : target.value);
   }
 
-  return [value, handleValueChange, setValue];
+  return [value, setValue];
 }
 
 export default useInput;
